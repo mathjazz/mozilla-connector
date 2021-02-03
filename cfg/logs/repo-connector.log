@@ -1,0 +1,388 @@
+2021-02-03 21:30:25,343 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:30:25,359 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:30:27,964 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:30:27,968 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:30:28,001 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:30:28,076 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=HTTPS,host=github.com,path=user/repository.git,branch=<null>] are added, alias github_test, project projectId, auth type null
+2021-02-03 21:30:28,084 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=HTTPS,host=user.git.beanstalkapp.com,path=repository.git,branch=<null>] are added, alias beanstalkapp_test, project projectId, auth type null
+2021-02-03 21:30:28,085 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 2 repositories
+2021-02-03 21:30:30,843 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@41582899 is assigned to handle PollImportRequest data
+2021-02-03 21:30:30,844 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@10166230 is assigned to handle TranslationImportRequest data
+2021-02-03 21:30:30,844 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@13dd7887 is assigned to handle PushImportRequest data
+2021-02-03 21:30:31,017 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:30:31,018 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:30:33,133 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:30:33,185 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:30:33,187 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:30:33,188 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:30:33,188 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:30:33,190 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=3.205 seconds}
+2021-02-03 21:30:33,191 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:30:34,498 ERROR {AbstractRepositoryConnector.java:95} [projectId-RepositoryKey[type=GIT,protocol=HTTPS,host=user.git.beanstalkapp.com,path=repository.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: https://user.git.beanstalkapp.com/repository.git: Authentication is required but no CredentialsProvider has been registered
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: https://user.git.beanstalkapp.com/repository.git: Authentication is required but no CredentialsProvider has been registered
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:484) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportHttp.openFetch(TransportHttp.java:288) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+2021-02-03 21:30:34,499 WARN {RepoConnector.java:320} [projectId-RepositoryKey[type=GIT,protocol=HTTPS,host=user.git.beanstalkapp.com,path=repository.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=HTTPS,host=user.git.beanstalkapp.com,path=repository.git,branch=<null>] isn't working, error: https://user.git.beanstalkapp.com/repository.git: Authentication is required but no CredentialsProvider has been registered
+2021-02-03 21:30:35,062 ERROR {AbstractRepositoryConnector.java:95} [projectId-RepositoryKey[type=GIT,protocol=HTTPS,host=github.com,path=user/repository.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: https://github.com/user/repository.git: Authentication is required but no CredentialsProvider has been registered
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/user/repository.git: Authentication is required but no CredentialsProvider has been registered
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:484) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportHttp.openFetch(TransportHttp.java:288) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+2021-02-03 21:30:35,064 WARN {RepoConnector.java:320} [projectId-RepositoryKey[type=GIT,protocol=HTTPS,host=github.com,path=user/repository.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=HTTPS,host=github.com,path=user/repository.git,branch=<null>] isn't working, error: https://github.com/user/repository.git: Authentication is required but no CredentialsProvider has been registered
+2021-02-03 21:30:35,064 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:30:35,067 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:30:35,076 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:30:35,371 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:30:35,824 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:30:35,825 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
+2021-02-03 21:39:24,185 WARN {RepoConnector.java:178} [--] Repository Connector Stopped
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:574) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:563) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:597) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:520) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:294) ~[na:na]
+	at com.smartling.repoconnector.RepoConnector.stop(RepoConnector.java:172) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.access$000(RepoConnector.java:40) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector$2.run(RepoConnector.java:146) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:39:26,831 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:39:26,837 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:39:28,090 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:39:28,093 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:39:28,173 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:39:28,254 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] are added, alias mozilla_github_localization_test, project bf8cc2042, auth type SSH_KEY
+2021-02-03 21:39:28,261 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 1 repositories
+2021-02-03 21:39:30,550 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@7f305f34 is assigned to handle PollImportRequest data
+2021-02-03 21:39:30,555 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@4c8d45cf is assigned to handle TranslationImportRequest data
+2021-02-03 21:39:30,557 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@b808af5 is assigned to handle PushImportRequest data
+2021-02-03 21:39:30,670 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:39:30,671 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:39:31,166 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:39:31,181 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:39:31,183 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:39:31,183 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:39:31,183 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:39:31,185 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=1.430 seconds}
+2021-02-03 21:39:31,186 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:39:31,417 ERROR {AbstractRepositoryConnector.java:95} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: java.io.FileNotFoundException: /home/user/.ssh/mz_id_rsa (No such file or directory)
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: java.io.FileNotFoundException: /home/user/.ssh/mz_id_rsa (No such file or directory)
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.SshTransport.getSession(SshTransport.java:136) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh$SshFetchConnection.<init>(TransportGitSsh.java:264) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh.openFetch(TransportGitSsh.java:162) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+Caused by: com.jcraft.jsch.JSchException: java.io.FileNotFoundException: /home/user/.ssh/mz_id_rsa (No such file or directory)
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:543) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.IdentityFile.newInstance(IdentityFile.java:40) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:407) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:388) ~[jsch-0.1.53.jar:na]
+	at com.smartling.repoconnector.services.vcs.git.SSHSession.getJSch(SSHSession.java:88) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:219) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:175) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:109) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 11 common frames omitted
+Caused by: java.io.FileNotFoundException: /home/user/.ssh/mz_id_rsa (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[na:na]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:211) ~[na:na]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:153) ~[na:na]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:108) ~[na:na]
+	at com.jcraft.jsch.Util.fromFile(Util.java:508) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:540) ~[jsch-0.1.53.jar:na]
+	... 18 common frames omitted
+2021-02-03 21:39:31,419 WARN {RepoConnector.java:320} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] isn't working, error: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: java.io.FileNotFoundException: /home/user/.ssh/mz_id_rsa (No such file or directory)
+2021-02-03 21:39:31,420 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:39:31,422 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:39:31,850 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:39:31,851 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:39:31,855 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:39:31,855 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
+2021-02-03 21:39:53,960 WARN {RepoConnector.java:178} [--] Repository Connector Stopped
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:574) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:563) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:597) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:520) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:294) ~[na:na]
+	at com.smartling.repoconnector.RepoConnector.stop(RepoConnector.java:172) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.access$000(RepoConnector.java:40) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector$2.run(RepoConnector.java:146) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:41:34,016 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:41:34,022 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:41:35,711 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:41:35,715 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:41:35,739 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:41:35,837 WARN {AbstractApplicationContext.java:557} [--] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'repositoryPollingImporterImpl': Unsatisfied dependency expressed through field 'smartlingConnector'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'smartlingApiFacadeImpl': Unsatisfied dependency expressed through field 'filesApiClientFactory'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'filesApiClientFactory' defined in URL [jar:file:/Users/mathjazz/repo-connector/repo-connector-1.7.7.jar!/com/smartling/repoconnector/services/integration/FilesApiClientFactory.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configRepositoryDataProviderImpl': Invocation of init method failed; nested exception is com.typesafe.config.ConfigException$Missing: No configuration setting found for key 'sshKey.passphrase'
+2021-02-03 21:43:34,921 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:43:34,925 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:43:35,982 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:43:35,985 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:43:36,017 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:43:36,087 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] are added, alias mozilla_github_localization_test, project bf8cc2042, auth type SSH_KEY
+2021-02-03 21:43:36,108 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 1 repositories
+2021-02-03 21:43:38,913 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@34beadce is assigned to handle PollImportRequest data
+2021-02-03 21:43:38,914 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@3ba97962 is assigned to handle TranslationImportRequest data
+2021-02-03 21:43:38,915 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@df9d400 is assigned to handle PushImportRequest data
+2021-02-03 21:43:39,061 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:43:39,061 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:43:39,764 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:43:39,784 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:43:39,784 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:43:39,785 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:43:39,785 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:43:39,788 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=1.875 seconds}
+2021-02-03 21:43:39,789 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:43:40,864 ERROR {AbstractRepositoryConnector.java:95} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: Auth fail
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: Auth fail
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.SshTransport.getSession(SshTransport.java:136) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh$SshFetchConnection.<init>(TransportGitSsh.java:264) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh.openFetch(TransportGitSsh.java:162) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+Caused by: com.jcraft.jsch.JSchException: Auth fail
+	at com.jcraft.jsch.Session.connect(Session.java:512) ~[jsch-0.1.53.jar:na]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:116) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 11 common frames omitted
+2021-02-03 21:43:40,866 WARN {RepoConnector.java:320} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] isn't working, error: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: Auth fail
+2021-02-03 21:43:40,867 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:43:40,869 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:43:40,875 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:43:41,530 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:43:42,671 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:43:42,672 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
+2021-02-03 21:46:49,455 WARN {RepoConnector.java:178} [--] Repository Connector Stopped
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:574) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:563) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:597) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:520) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:294) ~[na:na]
+	at com.smartling.repoconnector.RepoConnector.stop(RepoConnector.java:172) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.access$000(RepoConnector.java:40) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector$2.run(RepoConnector.java:146) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:46:52,426 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:46:52,431 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:46:53,767 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:46:53,769 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:46:53,791 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:46:53,845 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] are added, alias mozilla_github_localization_test, project bf8cc2042, auth type SSH_KEY
+2021-02-03 21:46:53,856 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 1 repositories
+2021-02-03 21:46:56,212 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@7f5e6833 is assigned to handle PollImportRequest data
+2021-02-03 21:46:56,213 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@58bad46f is assigned to handle TranslationImportRequest data
+2021-02-03 21:46:56,214 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@342723a3 is assigned to handle PushImportRequest data
+2021-02-03 21:46:56,309 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:46:56,310 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:46:56,826 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:46:56,839 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:46:56,840 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:46:56,840 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:46:56,841 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:46:56,842 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=1.477 seconds}
+2021-02-03 21:46:56,843 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:46:58,848 INFO {GitRepositoryConnector.java:442} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository is accessible
+2021-02-03 21:46:58,851 ERROR {SmartlingApiFacadeImpl.java:250} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Error during check of project's access
+com.smartling.repoconnector.services.CredentialsInvalidException: Bad project credentials
+	at com.smartling.repoconnector.services.integration.FilesApiClientFactory.getFileApi(FilesApiClientFactory.java:93) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.integration.FilesApiClientFactory.getFileApi(FilesApiClientFactory.java:85) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.integration.uploader.SmartlingApiFacadeImpl.checkProjectAccess(SmartlingApiFacadeImpl.java:244) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:46:58,852 WARN {RepoConnector.java:320} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] isn't working, error: Bad project credentials
+2021-02-03 21:46:58,853 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:46:58,854 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:46:58,861 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:46:59,532 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:47:00,607 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:47:00,607 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
+2021-02-03 21:48:43,397 WARN {RepoConnector.java:178} [--] Repository Connector Stopped
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:574) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:563) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:597) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:520) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:294) ~[na:na]
+	at com.smartling.repoconnector.RepoConnector.stop(RepoConnector.java:172) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.access$000(RepoConnector.java:40) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector$2.run(RepoConnector.java:146) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:48:46,639 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:48:46,669 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:48:47,960 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:48:47,972 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:48:48,005 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:48:48,059 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] are added, alias mozilla_github_localization_test, project bf8cc2042, auth type SSH_KEY
+2021-02-03 21:48:48,068 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 1 repositories
+2021-02-03 21:48:50,562 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@2c674d58 is assigned to handle PollImportRequest data
+2021-02-03 21:48:50,562 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@7c0e4e4e is assigned to handle TranslationImportRequest data
+2021-02-03 21:48:50,563 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@f3876ef is assigned to handle PushImportRequest data
+2021-02-03 21:48:50,673 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:48:50,674 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:48:51,188 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:48:51,201 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:48:51,202 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:48:51,203 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:48:51,203 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:48:51,205 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=1.437 seconds}
+2021-02-03 21:48:51,205 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:48:51,301 ERROR {AbstractRepositoryConnector.java:95} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@669daa93
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@669daa93
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.SshTransport.getSession(SshTransport.java:136) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh$SshFetchConnection.<init>(TransportGitSsh.java:264) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh.openFetch(TransportGitSsh.java:162) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+Caused by: com.jcraft.jsch.JSchException: invalid privatekey: [B@669daa93
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:664) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:561) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.IdentityFile.newInstance(IdentityFile.java:40) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:407) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:367) ~[jsch-0.1.53.jar:na]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getJSch(JschConfigSessionFactory.java:261) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.SSHSession.getJSch(SSHSession.java:83) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:219) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:175) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:109) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 11 common frames omitted
+2021-02-03 21:48:51,303 WARN {RepoConnector.java:320} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] isn't working, error: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@669daa93
+2021-02-03 21:48:51,304 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:48:51,306 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:48:51,877 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:48:51,881 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:48:51,885 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:48:51,885 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
+2021-02-03 21:52:02,464 WARN {RepoConnector.java:178} [--] Repository Connector Stopped
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:574) ~[na:na]
+	at java.base/sun.nio.ch.Net.connect(Net.java:563) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:597) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:520) ~[na:na]
+	at java.base/java.net.Socket.<init>(Socket.java:294) ~[na:na]
+	at com.smartling.repoconnector.RepoConnector.stop(RepoConnector.java:172) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.access$000(RepoConnector.java:40) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector$2.run(RepoConnector.java:146) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+2021-02-03 21:52:05,222 INFO {RepoConnector.java:87} [--] Repo connector version is 1.7.7
+2021-02-03 21:52:05,236 INFO {RepoConnector.java:89} [--] Configuration is cfg
+2021-02-03 21:52:07,220 INFO {RepositoryFactoryImpl.java:49} [--] Repository factory configuration are reading...
+2021-02-03 21:52:07,223 INFO {RepositoryFactoryImpl.java:55} [--] Repository factory configuration are read successfully. There are 6 specific connectors
+2021-02-03 21:52:07,281 INFO {ConfigRepositoryDataProviderImpl.java:86} [--] Repository configurations are reading...
+2021-02-03 21:52:07,359 INFO {ConfigRepositoryDataProviderImpl.java:127} [--] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] are added, alias mozilla_github_localization_test, project bf8cc2042, auth type SSH_KEY
+2021-02-03 21:52:07,366 INFO {ConfigRepositoryDataProviderImpl.java:129} [--] Repository configurations are read successfully. There are 1 repositories
+2021-02-03 21:52:11,036 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.scheduler.RepositoryPollingImporterImpl@382faf51 is assigned to handle PollImportRequest data
+2021-02-03 21:52:11,037 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Smartling2VcsImporterImpl@b841713 is assigned to handle TranslationImportRequest data
+2021-02-03 21:52:11,037 INFO {QueueImportDataListener.java:49} [--] Importer com.smartling.repoconnector.services.importer.Vcs2SmartlingImporterImpl@5158a9f7 is assigned to handle PushImportRequest data
+2021-02-03 21:52:11,162 INFO {BrokerManager.java:89} [--] Repository Connector is starting
+2021-02-03 21:52:11,165 INFO {ActiveMQProvider.java:45} [--] Queue is started
+2021-02-03 21:52:11,597 INFO {HTTPSJerseyListener.java:68} [--] HTTP listener is started on http://0.0.0.0:5555
+2021-02-03 21:52:11,682 INFO {BrokerManager.java:95} [--] Metrics reposter is started. Output dir: cfg/metrics
+2021-02-03 21:52:11,683 INFO {BrokerManager.java:97} [--] Repository Connector successfully started
+2021-02-03 21:52:11,684 INFO {RepoConnector.java:213} [--] Repository Connector is starting
+2021-02-03 21:52:11,684 INFO {RepoConnector.java:214} [--] Checking health...
+2021-02-03 21:52:11,686 INFO {RepoConnector.java:311} [--] ActiveMQProvider is OK, parameters {handledConnections=0, connections=0, uptime=1.799 seconds}
+2021-02-03 21:52:11,686 INFO {RepoConnector.java:311} [--] HTTPSJerseyListener is OK
+2021-02-03 21:52:11,812 ERROR {AbstractRepositoryConnector.java:95} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository error
+org.eclipse.jgit.api.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@41463c56
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:220) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.getBranches(GitRepositoryConnector.java:460) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.git.GitRepositoryConnector.checkAccess(GitRepositoryConnector.java:440) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.vcs.RepositoryFactoryImpl.validateAllRepositories(RepositoryFactoryImpl.java:110) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.services.manager.BrokerManager.check(BrokerManager.java:84) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.start(RepoConnector.java:215) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at com.smartling.repoconnector.RepoConnector.main(RepoConnector.java:92) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+Caused by: org.eclipse.jgit.errors.TransportException: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@41463c56
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:159) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.SshTransport.getSession(SshTransport.java:136) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh$SshFetchConnection.<init>(TransportGitSsh.java:264) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.TransportGitSsh.openFetch(TransportGitSsh.java:162) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:198) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 7 common frames omitted
+Caused by: com.jcraft.jsch.JSchException: invalid privatekey: [B@41463c56
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:664) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.KeyPair.load(KeyPair.java:561) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.IdentityFile.newInstance(IdentityFile.java:40) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:407) ~[jsch-0.1.53.jar:na]
+	at com.jcraft.jsch.JSch.addIdentity(JSch.java:367) ~[jsch-0.1.53.jar:na]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getJSch(JschConfigSessionFactory.java:261) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at com.smartling.repoconnector.services.vcs.git.SSHSession.getJSch(SSHSession.java:83) ~[repo-connector-1.7.7.jar:1.0.0-SNAPSHOT]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:219) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.createSession(JschConfigSessionFactory.java:175) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	at org.eclipse.jgit.transport.JschConfigSessionFactory.getSession(JschConfigSessionFactory.java:109) ~[org.eclipse.jgit-4.3.0.201604071810-r.jar:4.3.0.201604071810-r]
+	... 11 common frames omitted
+2021-02-03 21:52:11,814 WARN {RepoConnector.java:320} [bf8cc2042-RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>]-] Repository RepositoryKey[type=GIT,protocol=SSH,host=github.com,path=mozilla-l10n/tooling_test_repo.git,branch=<null>] isn't working, error: ssh://git@github.com/mozilla-l10n/tooling_test_repo.git: invalid privatekey: [B@41463c56
+2021-02-03 21:52:11,816 INFO {BrokerManager.java:102} [--] Repository Connector is stopping
+2021-02-03 21:52:11,820 INFO {HTTPSJerseyListener.java:82} [--] HTTP listener is stopped on http://0.0.0.0:5555
+2021-02-03 21:52:12,354 INFO {ActiveMQProvider.java:59} [--] Queue is stopped
+2021-02-03 21:52:12,359 WARN {DefaultMessageListenerContainer.java:895} [--] Setup of JMS message listener invoker failed for destination 'queue://com.smartling.repoconnector.import' - trying to recover. Cause: peer (vm://localhost#1) stopped.
+2021-02-03 21:52:12,402 INFO {BrokerManager.java:108} [--] Repository Connector successfully stopped
+2021-02-03 21:52:12,402 ERROR {RepoConnector.java:219} [--] Repository Connector isn't started properly. Stopped
